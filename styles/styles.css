@@ -11,20 +11,30 @@
 
 .title-style,
 .modal-title,
-.rules-win {
+.rules-win,
+.mode-title,
+.instructions {
     font-family: federation;
 }
 
 .button-style, 
 .player-text,
-.rules-text{
+.rules-text,
+.bestOfTxt,
+.option-text{
     font-family: vcr;
 }
 
+/* BASIC BUTTON STYLE */
 .button-style{
     color: white;
     background-color: #1F1B26;
     border-radius: 15px;
+}
+
+/* CURSOR POINTER STYLE */
+.cursor {
+    cursor: pointer;
 }
 
 /* RULES BTN/MODAL STYLES*/
@@ -159,6 +169,96 @@
 .multi-position{
     position: absolute;
     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* MODE PAGE STYLES */
+.modeBG {
+    background: url(../assets/modeBG.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.mode-title{
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 8%;
+    left: 9%;
+}
+
+.mode-title span {
+    background-color: black;
+    padding-left: 15px;
+    padding-right: 85px;
+}
+
+.bestOfTxt {
+    color: white;
+    font-size: 75px;
+}
+
+.bestOfBlock{
+    width: 1300px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* GAMEPLAY PAGE STYLE */
+.gameBG {
+    background: url(../assets/startrekcity2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.instructions {
+    color: white;
+    font-size: 120px;
+    position: absolute;
+    top: 8%;
+    left: 5%;
+}
+
+.red{
+    color: red;
+}
+
+.redLine{
+    background-color: red;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.blue{
+    color: blue;
+}
+
+.blueLine{
+    background-color: blue;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.option-text{
+    color: white;
+    font-size: 60px;
+}
+
+.options-block {
+    width: 100vw;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

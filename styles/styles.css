@@ -13,7 +13,8 @@
 .modal-title,
 .rules-win,
 .mode-title,
-.instructions {
+.instructions,
+.ending-text {
     font-family: federation;
 }
 
@@ -83,7 +84,7 @@
 
 /* HOME PAGE STYLES */
 .homeBG {
-    background: url(../assets/e99d9e94fc89c70ef8d79bf80d7c96e0.jpg) no-repeat center center fixed;
+    background: url(../assets/e99d9e94fc89c70ef8d79bf80d7c96e0.jpg) no-repeat bottom center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -117,7 +118,7 @@
     font-size: 55px;
     position: absolute;
     bottom: 15%;
-    right: 18%;
+    right: 15%;
     padding-left: 60px;
     padding-right: 60px;
     display: flex;
@@ -175,7 +176,7 @@
 
 /* MODE PAGE STYLES */
 .modeBG {
-    background: url(../assets/modeBG.png) no-repeat center center fixed;
+    background: url(../assets/modeBG.png) no-repeat top center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -213,7 +214,7 @@
 
 /* GAMEPLAY PAGE STYLE */
 .gameBG {
-    background: url(../assets/startrekcity2.jpg) no-repeat center center fixed;
+    background: url(../assets/bg3.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -261,4 +262,55 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.dropshadow {
+    -webkit-filter: drop-shadow(20px -20px 2rem #000000);
+     filter: drop-shadow(12px 0px 8px #000000);
+}
+
+/* ENDING PAGE STYLE */
+.p1winBG {
+    background: url(../assets/bg8.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.p2winBG {
+    background: url(../assets/588210.jpg) no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.ending-text {
+    font-size: 100px;
+    color: white;
+    position: absolute;
+    bottom: 33%;
+    left: 9%;
+    line-height: 1.1em;
+}
+
+.score-text {
+    background-color: rgba(252, 252, 255, 0.65);
+    margin-left: -30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.menu-btn{
+    font-size: 43px;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+    --bs-btn-padding-x: 0px;
+    --bs-btn-padding-y: 0px;
 }

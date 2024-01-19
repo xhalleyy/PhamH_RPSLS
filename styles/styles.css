@@ -284,6 +284,19 @@
      filter: drop-shadow(12px 0px 8px #000000);
 }
 
+.next-btn{
+    font-size: 43px;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    align-items: center;
+    --bs-btn-padding-x: 0px;
+    --bs-btn-padding-y: 0px;
+}
+
 /* ENDING PAGE STYLE */
 .p1winBG {
     background: url(../assets/bg8.jpg) no-repeat center center fixed;

@@ -23,7 +23,8 @@
 .player-text,
 .rules-text,
 .bestOfTxt,
-.option-text{
+.option-text,
+.counter-style{
     font-family: vcr;
 }
 
@@ -52,6 +53,15 @@
     --bs-btn-padding-x: 0px;
     --bs-btn-padding-y: 0px;
     z-index: 1000;
+}
+
+/* COUNTER STYLE */
+.counter-style{
+    font-size: 40px;
+    color: white;
+    position: absolute;
+    right: 5%;
+    top: 12%;
 }
 
 .modal-content{
@@ -247,6 +257,10 @@
 
 .red{
     color: red;
+}
+
+.green{
+    color: #24FF00;
 }
 
 .redLine{

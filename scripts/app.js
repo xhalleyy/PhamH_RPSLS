@@ -7,7 +7,7 @@ const rpsAPI = async () => {
     return await promise.text();
 };
 
-let p1Win = true;
+let mode = 0;
 
 // FOR PLAYER MODE: SINGLE OR MULTIPLAYER
 if (location.pathname.includes("playerpage")) {
@@ -57,12 +57,11 @@ if (location.pathname.includes("modepage")) {
 
 if (location.pathname.includes("gamepage")) {
     let gameTitle = document.getElementById("game-title");
-    // let textColor = document.getElementById("text-color");
     let options = document.getElementById("options");
     let outcome = document.getElementById("outcome");
     let next = document.getElementById("next");
-    // let whatWins = document.getElementById("whatWins");
     let rules = document.getElementById("rules");
+    let winCount = document.getElementById("winCount");
     let rockBlue = document.getElementById("rockBlue");
     let paperBlue = document.getElementById("paperBlue");
     let scissorsBlue = document.getElementById("scissorsBlue");
@@ -74,11 +73,13 @@ if (location.pathname.includes("gamepage")) {
     let scissors = document.getElementById("scissors");
     let lizard = document.getElementById("lizard");
     let spock = document.getElementById("spock");
+
     let player1Choice = "";
-    // let player2Choice = "";
     let player1Turn = true;
+    
     // ROCK CLICK EVENT
     rock.addEventListener("click", async () => {
+        
         // PLAYER VS CPU
         if (localStorage.getItem("playerMode") == "single player") {
             let cpuChoice = await rpsAPI();
@@ -86,6 +87,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Rock. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
@@ -104,11 +106,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -119,11 +123,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -140,12 +146,13 @@ if (location.pathname.includes("gamepage")) {
                 scissorsBlue.classList.add("blueLine");
                 lizardBlue.classList.add("blueLine");
                 spockBlue.classList.add("blueLine");
+                winCount.innerHTML = `P2 WINS: <span class="green"> ${player2Wins}/${mode}</span>`;
             } else {
                 gameLogic(player1Choice, "Rock");
-                console.log(winner);
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One Chose ${player1Choice}. Player Two chose Rock. <br> <span class=${color}>${winner}</span>`;
                 next.classList.remove("d-none");
             }
@@ -163,11 +170,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if ((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -186,11 +196,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 7;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -210,10 +223,11 @@ if (location.pathname.includes("gamepage")) {
     paper.addEventListener("click", async () => {
         if (localStorage.getItem("playerMode") == "single player") {
             let cpuChoice = await rpsAPI();
-            await gameLogic("Paper", cpuChoice);
+            gameLogic("Paper", cpuChoice);
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Paper. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
@@ -229,11 +243,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -244,11 +260,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -263,11 +281,14 @@ if (location.pathname.includes("gamepage")) {
                 scissorsBlue.classList.add("blueLine");
                 lizardBlue.classList.add("blueLine");
                 spockBlue.classList.add("blueLine");
+                winCount.innerHTML = `P2 WINS: <span class="green"> ${player2Wins}/${mode}</span>`;
+
             } else {
                 gameLogic(player1Choice, "Paper");
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One chose ${player1Choice}. Player Two chose Paper. <br> <span class=${color}>${winner}</span>`;
                 next.classList.remove("d-none");
                 
@@ -286,11 +307,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -308,11 +332,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 7;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -335,6 +362,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Scissors. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
@@ -350,11 +378,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -365,11 +395,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -385,12 +417,13 @@ if (location.pathname.includes("gamepage")) {
                 scissorsBlue.classList.add("blueLine");
                 lizardBlue.classList.add("blueLine");
                 spockBlue.classList.add("blueLine");
+                winCount.innerHTML = `P2 WINS: <span class="green"> ${player2Wins}/${mode}</span>`;
             } else {
                 gameLogic(player1Choice, "Scissors");
-                console.log(winner);
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One chose ${player1Choice}. Player Two chose Scissors. <br> <span class=${color}>${winner}</span>`;
                 next.classList.remove("d-none");
             }
@@ -408,11 +441,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -430,11 +466,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 7;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -457,6 +496,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Lizard. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
@@ -472,11 +512,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -487,11 +529,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -507,12 +551,13 @@ if (location.pathname.includes("gamepage")) {
                 scissorsBlue.classList.add("blueLine");
                 lizardBlue.classList.add("blueLine");
                 spockBlue.classList.add("blueLine");
+                winCount.innerHTML = `P2 WINS: <span class="green"> ${player2Wins}/${mode}</span>`;
             } else {
                 gameLogic(player1Choice, "Lizard");
-                console.log(winner);
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One Chose ${player1Choice}. Player Two chose Lizard. <br> <span class=${color}>${winner}</span>`;
                 next.classList.remove("d-none");
             }
@@ -530,11 +575,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -552,11 +600,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 7;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -579,6 +630,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Spock. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
@@ -594,11 +646,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -609,11 +663,13 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") !== "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                 });
@@ -629,12 +685,13 @@ if (location.pathname.includes("gamepage")) {
                 scissorsBlue.classList.add("blueLine");
                 lizardBlue.classList.add("blueLine");
                 spockBlue.classList.add("blueLine");
+                winCount.innerHTML = `P2 WINS: <span class="green"> ${player2Wins}/${mode}</span>`;
             } else {
                 gameLogic(player1Choice, "Spock");
-                console.log(winner);
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One Chose ${player1Choice}. Player Two chose Spock. <br> <span class=${color}>${winner}</span>`;
                 next.classList.remove("d-none");
             }
@@ -652,11 +709,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "five" && player1Wins !== 3) || (localStorage.getItem("gameMode") == "five" && player2Wins !== 3)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -674,11 +734,14 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    mode = 7;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
                     outcome.innerHTML = "";
                     next.classList.add("d-none");
                     player1Turn = true;
@@ -694,7 +757,7 @@ if (location.pathname.includes("gamepage")) {
     });
 }
 
-
+// ENDING PAGE 
 if (location.pathname.includes("endingpage")) {
     let ending = document.getElementById("ending");
     let result = document.getElementById("result");
@@ -704,13 +767,15 @@ if (location.pathname.includes("endingpage")) {
         sessionStorage.clear();
     })
 
+    // SINGLE PLAYER OUT COMES
     if(localStorage.getItem("playerMode") == "single player" ){
+
+        // BEST OUT OF RESULTS
         if(localStorage.getItem("gameMode") == "one"){
             if(sessionStorage.getItem("Player1WinBoolean") == "true"){
                 ending.classList.add("p1winBG");
                 result.innerHTML = `YOU WON! <br><span class="score-text red">YOU WON ONE OUT OF ONE TIME!</span>`;
             }else{
-                console.log("hit");
                 ending.classList.add("p2winBG");
                 result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text blue">COMPUTER WON ONE OUT OF ONE TIME!</span>`;
             }
@@ -729,6 +794,34 @@ if (location.pathname.includes("endingpage")) {
             }else{
                 ending.classList.add("p2winBG");
                 result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text blue">COMPUTER WON FOUR OUT OF SEVEN TIMES!</span>`;
+            }
+        }
+    }else {
+
+        // PLAYER VS PLAYER OUTCOMES
+        if(localStorage.getItem("gameMode") == "one"){
+            if(sessionStorage.getItem("Player1WinBoolean") == "true"){
+                ending.classList.add("p1winBG");
+                result.innerHTML = `PLAYER ONE WINS! <br><span class="score-text red">PLAYER ONE WON ONE OUT OF ONE TIME!</span>`;
+            }else{
+                ending.classList.add("p2winBG");
+                result.innerHTML = `PLAYER TWO WINS! <br><span class="score-text blue">PLAYER TWO WON ONE OUT OF ONE TIME!</span>`;
+            }
+        }else if(localStorage.getItem("gameMode") == "five"){
+            if(sessionStorage.getItem("Player1WinBoolean") == "true"){
+                ending.classList.add("p1winBG");
+                result.innerHTML = `PLAYER ONE WINS!<br><span class="score-text red">PLAYER ONE WON THREE OUT OF FIVE TIMES!</span>`;
+            }else{
+                ending.classList.add("p2winBG");
+                result.innerHTML = `PLAYER TWO WINS! <br><span class="score-text blue">PLAYER TWO WON THREE OUT OF FIVE TIMES!</span>`;
+            }
+        }else{
+            if(sessionStorage.getItem("Player1WinBoolean") == "true"){
+                ending.classList.add("p1winBG");
+                result.innerHTML = `PLAYER ONE WINS! <br><span class="score-text red">PLAYER ONE WON FOUR OUT OF SEVEN TIMES!</span>`;
+            }else{
+                ending.classList.add("p2winBG");
+                result.innerHTML = `PLAYER TWO WINS! <br><span class="score-text blue">PLAYER TWO WON FOUR OUT OF SEVEN TIMES!</span>`;
             }
         }
     }

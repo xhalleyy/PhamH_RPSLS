@@ -43,6 +43,7 @@ const gameLogic = (answer1, answer2) => {
                     winner = "Paper covers Rock!";
                     color = "redLine";
                     player1Wins++;
+                    break;
                 case "Scissors":
                     winner = "Scissors cut Paper!";
                     color = "blueLine";
@@ -52,6 +53,7 @@ const gameLogic = (answer1, answer2) => {
                     winner = "Lizard eats Paper!";
                     color = "blueLine";
                     player2Wins++;
+                    break;
                 default:
                     winner = "Paper disproves Spock!";
                     color = "redLine";
@@ -105,6 +107,7 @@ const gameLogic = (answer1, answer2) => {
                     winner = "Scissors decapitate Lizard!";
                     color = "blueLine";
                     player2Wins++;
+                    break;
                 default:
                     winner = "Lizard poisons Spock!";
                     color = "redLine";

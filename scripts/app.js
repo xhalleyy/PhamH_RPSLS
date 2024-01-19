@@ -99,10 +99,7 @@ if (location.pathname.includes("gamepage")) {
                 
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                (localStorage.getItem("gameMode") == "five" && player2Wins == 3)
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -117,10 +114,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||(localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -157,17 +151,14 @@ if (location.pathname.includes("gamepage")) {
             }
             player1Turn = !player1Choice;
             
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -190,9 +181,7 @@ if (location.pathname.includes("gamepage")) {
             }
 
             if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -228,17 +217,14 @@ if (location.pathname.includes("gamepage")) {
             outcome.innerHTML = `You chose Paper. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -253,10 +239,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -291,17 +274,14 @@ if (location.pathname.includes("gamepage")) {
             }
             player1Turn = !player1Choice;
             
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3) ) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -323,10 +303,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -361,17 +338,14 @@ if (location.pathname.includes("gamepage")) {
             outcome.innerHTML = `You chose Scissors. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -386,10 +360,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -425,17 +396,14 @@ if (location.pathname.includes("gamepage")) {
             }
             player1Turn = !player1Choice;
             
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -457,10 +425,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -495,17 +460,14 @@ if (location.pathname.includes("gamepage")) {
             outcome.innerHTML = `You chose Lizard. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3) ) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -520,10 +482,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -559,17 +518,14 @@ if (location.pathname.includes("gamepage")) {
             }
             player1Turn = !player1Choice;
             
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -591,10 +547,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -629,14 +582,14 @@ if (location.pathname.includes("gamepage")) {
             outcome.innerHTML = `You chose Spock. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             next.classList.remove("d-none");
 
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1 ) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || player2Wins == 3) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -651,7 +604,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || player2Wins == 4) {
+            if ((localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -687,17 +640,14 @@ if (location.pathname.includes("gamepage")) {
             }
             player1Turn = !player1Choice;
             
-            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || player2Wins == 1) {
+            if (localStorage.getItem("gameMode") == "one" && player1Wins == 1 || (localStorage.getItem("gameMode") == "one" && player2Wins == 1)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "five" && player1Wins == 3) ||
-                player2Wins == 3
-            ) {
+            if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 3 ? true : false );
                 next.addEventListener("click", () => {
                     location.href = "./endingpage.html";
@@ -719,10 +669,7 @@ if (location.pathname.includes("gamepage")) {
                 });
             }
 
-            if (
-                (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) ||
-                player2Wins == 4
-            ) {
+            if ( (localStorage.getItem("gameMode") == "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins == 4)) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 4 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
@@ -761,27 +708,27 @@ if (location.pathname.includes("endingpage")) {
         if(localStorage.getItem("gameMode") == "one"){
             if(sessionStorage.getItem("Player1WinBoolean") == "true"){
                 ending.classList.add("p1winBG");
-                result.innerHTML = `YOU WON! <br><span class="score-text">YOU WON ONE OUT OF ONE TIME!</span>`;
+                result.innerHTML = `YOU WON! <br><span class="score-text red">YOU WON ONE OUT OF ONE TIME!</span>`;
             }else{
                 console.log("hit");
                 ending.classList.add("p2winBG");
-                result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text">COMPUTER WON ONE OUT OF ONE TIME!</span>`;
+                result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text blue">COMPUTER WON ONE OUT OF ONE TIME!</span>`;
             }
         }else if(localStorage.getItem("gameMode") == "five"){
             if(sessionStorage.getItem("Player1WinBoolean") == "true"){
                 ending.classList.add("p1winBG");
-                result.innerHTML = `YOU WON! <br><span class="score-text">YOU WON THREE OUT OF FIVE TIMES!</span>`;
+                result.innerHTML = `YOU WON! <br><span class="score-text red">YOU WON THREE OUT OF FIVE TIMES!</span>`;
             }else{
                 ending.classList.add("p2winBG");
-                result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text">COMPUTER WON THREE OUT OF FIVE TIMES!</span>`;
+                result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text blue">COMPUTER WON THREE OUT OF FIVE TIMES!</span>`;
             }
         }else{
             if(sessionStorage.getItem("Player1WinBoolean") == "true"){
                 ending.classList.add("p1winBG");
-                result.innerHTML = `YOU WON! <br><span class="score-text">YOU WON FOUR OUT OF SEVEN TIMES!</span>`;
+                result.innerHTML = `YOU WON! <br><span class="score-text red">YOU WON FOUR OUT OF SEVEN TIMES!</span>`;
             }else{
                 ending.classList.add("p2winBG");
-                result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text">COMPUTER WON FOUR OUT OF SEVEN TIMES!</span>`;
+                result.innerHTML = `UNFORTUNATELY, YOU LOST! <br><span class="score-text blue">COMPUTER WON FOUR OUT OF SEVEN TIMES!</span>`;
             }
         }
     }

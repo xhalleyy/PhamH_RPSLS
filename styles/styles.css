@@ -14,7 +14,8 @@
 .rules-win,
 .mode-title,
 .instructions,
-.ending-text {
+.ending-text,
+.roundOutcome {
     font-family: federation;
 }
 
@@ -227,6 +228,20 @@
     position: absolute;
     top: 8%;
     left: 5%;
+}
+
+.roundOutcome {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 8%;
+    line-height: 1.1em;
+}
+
+.blackLine {
+    background-color: black;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .red{

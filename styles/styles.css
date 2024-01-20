@@ -19,17 +19,17 @@
     font-family: federation;
 }
 
-.button-style, 
+.button-style,
 .player-text,
 .rules-text,
 .bestOfTxt,
 .option-text,
-.counter-style{
+.counter-style {
     font-family: vcr;
 }
 
 /* BASIC BUTTON STYLE */
-.button-style{
+.button-style {
     color: white;
     background-color: #1F1B26;
     border-radius: 15px;
@@ -56,7 +56,7 @@
 }
 
 /* COUNTER STYLE */
-.counter-style{
+.counter-style {
     font-size: 40px;
     color: white;
     position: absolute;
@@ -64,11 +64,11 @@
     top: 12%;
 }
 
-.modal-content{
+.modal-content {
     background-color: #180D38;
 }
 
-.modal-title{
+.modal-title {
     font-size: 65px !important;
     color: white;
 }
@@ -79,11 +79,11 @@
     line-height: 1em;
 }
 
-.rules-player{
+.rules-player {
     font-size: 33px;
 }
 
-.rules-win{
+.rules-win {
     font-size: 55px;
     color: white;
 }
@@ -110,22 +110,22 @@
     left: 8%;
 }
 
-.title-style span{
+.title-style span {
     background-color: red;
 }
 
-.top-padding{
+.top-padding {
     padding-left: 60px;
     padding-right: 15px;
 }
 
-.bottom-padding{
+.bottom-padding {
     margin-left: 55px;
     padding-left: 5px;
     padding-right: 70px;
 }
 
-.play-btn{
+.play-btn {
     font-size: 55px;
     position: absolute;
     bottom: 15%;
@@ -139,7 +139,7 @@
 }
 
 /* PLAYER PAGE STYLES */
-.playerBG{
+.playerBG {
     background: url(../assets/d2etd08-b26af376-12a3-40f4-aa6d-19cbd018247f.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -147,19 +147,19 @@
     background-size: cover;
 }
 
-.player-text{
+.player-text {
     font-size: 70px;
     color: white;
     line-height: 1.1em;
 }
 
 .player-col-1,
-.player-col-2{
+.player-col-2 {
     height: 100vh;
     position: relative;
 }
 
-.opacity{
+.opacity {
     opacity: .7;
 }
 
@@ -167,18 +167,18 @@
     opacity: 1;
 }
 
-.player-col-1:hover{
+.player-col-1:hover {
     background-color: rgba(5, 0, 33, .65);
     opacity: 1;
 }
 
-.player-col-2:hover{
+.player-col-2:hover {
     background-color: rgba(26, 1, 1, .65);
     opacity: 1;
 }
 
 .single-position,
-.multi-position{
+.multi-position {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -194,7 +194,7 @@
     background-size: cover;
 }
 
-.mode-title{
+.mode-title {
     color: white;
     font-size: 100px;
     position: absolute;
@@ -213,7 +213,7 @@
     font-size: 75px;
 }
 
-.bestOfBlock{
+.bestOfBlock {
     width: 1300px;
     position: absolute;
     margin-left: auto;
@@ -221,6 +221,25 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.mode-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.mode-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.mode-container {
+
+    display: flex;
+    justify-content: center;
+
 }
 
 /* GAMEPLAY PAGE STYLE */
@@ -232,26 +251,18 @@
     background-size: cover;
 }
 
+.game-container{
+    position: relative;
+    top: 30px;
+    width: 100%;
+}
+
 .instructions {
     color: white;
     font-size: 120px;
     position: absolute;
-    top: 8%;
-    left: 5%;
-}
-
-.roundOutcome {
-    color: white;
-    font-size: 100px;
-    position: absolute;
-    top: 8%;
-    width: 95vw;
-    line-height: 1.1em;
-}
-
-.outcome-img{
-    position: absolute;
-    bottom: 0%;
+    width: 68%;
+    left: 8%;
 }
 
 .blackLine {
@@ -260,51 +271,74 @@
     padding-right: 10px;
 }
 
-.red{
+.red {
     color: red;
 }
 
-.green{
+.green {
     color: #24FF00;
 }
 
-.redLine{
+.redLine {
     background-color: red;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.blue{
+.blue {
     color: blue;
 }
 
-.blueLine{
+.blueLine {
     background-color: blue;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.option-text{
+.option-text {
     color: white;
     font-size: 60px;
 }
 
+.options-container {
+    position: relative;
+    top: 40vh;
+}
+
 .options-block {
-    width: 100vw;
+    width: 90vw;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.img-block{
+    position: relative;
+    margin-top: 40px;
+    height: 95vh;
+}
+
+.outcome-img {
+    position: absolute;
+    height: 450px;
+    width: 100%;
+    bottom: 0;
+}
+
+.roundOutcome {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    width: 95vw;
+    line-height: 1.1em;
 }
 
 .dropshadow {
     -webkit-filter: drop-shadow(20px -20px 2rem #000000);
-     filter: drop-shadow(12px 0px 8px #000000);
+    filter: drop-shadow(12px 0px 8px #000000);
 }
 
-.next-btn{
+.next-btn {
     font-size: 43px;
     position: absolute;
     bottom: 10%;
@@ -350,7 +384,7 @@
     padding-right: 30px;
 }
 
-.menu-btn{
+.menu-btn {
     font-size: 43px;
     position: absolute;
     bottom: 10%;

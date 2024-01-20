@@ -68,16 +68,19 @@ if (location.pathname.includes("gamepage")) {
     let scissorsBlue = document.getElementById("scissorsBlue");
     let lizardBlue = document.getElementById("lizardBlue");
     let spockBlue = document.getElementById("spockBlue");
+    let imgsize = document.getElementById("imgsize");
 
+    
     let rock = document.getElementById("rock");
     let paper = document.getElementById("paper");
     let scissors = document.getElementById("scissors");
     let lizard = document.getElementById("lizard");
     let spock = document.getElementById("spock");
-
+    
     let player1Choice = "";
     let player1Turn = true;
     
+    imgsize.classList.remove("img-block");
     // ROCK CLICK EVENT
     rock.addEventListener("click", async () => {
         
@@ -86,6 +89,7 @@ if (location.pathname.includes("gamepage")) {
             let cpuChoice = await rpsAPI();
             gameLogic("Rock", cpuChoice);
             gameTitle.classList.add("d-none");
+            imgsize.classList.add("img-block");
             options.classList.add("d-none");
             rules.classList.add("d-none");
             winCount.classList.add("d-none");
@@ -98,9 +102,19 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });  
+            }else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    rules.classList.remove("d-none");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
                 });
-
-                
             }
 
             if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3)) {
@@ -112,6 +126,7 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     rules.classList.remove("d-none");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
@@ -131,6 +146,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
@@ -157,6 +173,7 @@ if (location.pathname.includes("gamepage")) {
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
                 winCount.classList.add("d-none");
+                imgsize.classList.add("img-block");
                 outcome.innerHTML = `Player One Chose ${player1Choice}. Player Two chose Rock. <br> <span class=${color}>${winner}</span>`;
                 imgResult.src = image;
                 next.classList.remove("d-none");
@@ -167,6 +184,26 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            }else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)) {
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src= "";
+                    next.classList.add("d-none");
+                    player1Turn = true;
+                    gameTitle.innerHTML ='PLAYER <span id="text-color" class="red">ONE</span> CHOOSES:';
+                    rockBlue.classList.remove("blueLine");
+                    paperBlue.classList.remove("blueLine");
+                    scissorsBlue.classList.remove("blueLine");
+                    lizardBlue.classList.remove("blueLine");
+                    spockBlue.classList.remove("blueLine");
                 });
             }
 
@@ -180,6 +217,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 5;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -207,6 +245,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 7;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -234,6 +273,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            imgsize.classList.add("img-block");
             winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Paper. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             imgResult.src = image;
@@ -243,6 +283,18 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            }else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)) {
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
                 });
             }
 
@@ -256,6 +308,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
@@ -274,6 +327,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
@@ -298,6 +352,7 @@ if (location.pathname.includes("gamepage")) {
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                imgsize.classList.add("img-block");
                 winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One chose ${player1Choice}. Player Two chose Paper. <br> <span class=${color}>${winner}</span>`;
                 imgResult.src = image;
@@ -311,6 +366,26 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
+            }else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
+                    player1Turn = true;
+                    gameTitle.innerHTML ='PLAYER <span id="text-color" class="red">ONE</span> CHOOSES:';
+                    rockBlue.classList.remove("blueLine");
+                    paperBlue.classList.remove("blueLine");
+                    scissorsBlue.classList.remove("blueLine");
+                    lizardBlue.classList.remove("blueLine");
+                    spockBlue.classList.remove("blueLine");
+                });
             }
 
             if ((localStorage.getItem("gameMode") == "five" && player1Wins == 3) || (localStorage.getItem("gameMode") == "five" && player2Wins == 3) ) {
@@ -323,6 +398,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 5;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -349,6 +425,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 7;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -374,6 +451,7 @@ if (location.pathname.includes("gamepage")) {
             gameLogic("Scissors", cpuChoice);
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
+            imgsize.classList.add("img-block");
             rules.classList.add("d-none");
             winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Scissors. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
@@ -384,6 +462,18 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            }else if (localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
                 });
             }
 
@@ -397,6 +487,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
@@ -415,6 +506,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
@@ -439,6 +531,7 @@ if (location.pathname.includes("gamepage")) {
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                imgsize.classList.add("img-block");
                 winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One chose ${player1Choice}. Player Two chose Scissors. <br> <span class=${color}>${winner}</span>`;
                 imgResult.src = image;
@@ -450,6 +543,26 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            } else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
+                    player1Turn = true;
+                    gameTitle.innerHTML ='PLAYER <span id="text-color" class="red">ONE</span> CHOOSES:';
+                    rockBlue.classList.remove("blueLine");
+                    paperBlue.classList.remove("blueLine");
+                    scissorsBlue.classList.remove("blueLine");
+                    lizardBlue.classList.remove("blueLine");
+                    spockBlue.classList.remove("blueLine");
                 });
             }
 
@@ -463,6 +576,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 5;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -489,6 +603,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 7;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -515,6 +630,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            imgsize.classList.add("img-block");
             winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Lizard. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             imgResult.src = image;
@@ -524,6 +640,18 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            }else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
                 });
             }
 
@@ -537,6 +665,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
@@ -555,6 +684,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
@@ -579,6 +709,7 @@ if (location.pathname.includes("gamepage")) {
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                imgsize.classList.add("img-block");
                 winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One Chose ${player1Choice}. Player Two chose Lizard. <br> <span class=${color}>${winner}</span>`;
                 imgResult.src = image;
@@ -590,6 +721,26 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            } else if (localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
+                    player1Turn = true;
+                    gameTitle.innerHTML ='PLAYER <span id="text-color" class="red">ONE</span> CHOOSES:';
+                    rockBlue.classList.remove("blueLine");
+                    paperBlue.classList.remove("blueLine");
+                    scissorsBlue.classList.remove("blueLine");
+                    lizardBlue.classList.remove("blueLine");
+                    spockBlue.classList.remove("blueLine");
                 });
             }
 
@@ -603,6 +754,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 5;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -629,6 +781,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 7;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -655,6 +808,7 @@ if (location.pathname.includes("gamepage")) {
             gameTitle.classList.add("d-none");
             options.classList.add("d-none");
             rules.classList.add("d-none");
+            imgsize.classList.add("img-block");
             winCount.classList.add("d-none");
             outcome.innerHTML = `You chose Spock. Computer chose ${cpuChoice}. <br> <span class=${color}>${winner}</span>`;
             imgResult.src = image;
@@ -664,6 +818,18 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            }else if (localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
                 });
             }
 
@@ -677,6 +843,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/5</span>`;
                     outcome.innerHTML = "";
@@ -690,11 +857,12 @@ if (location.pathname.includes("gamepage")) {
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
                 });
-            } else if((localStorage.getItem("gameMode") !== "seven" && player1Wins == 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
+            } else if((localStorage.getItem("gameMode") == "seven" && player1Wins !== 4) || (localStorage.getItem("gameMode") == "seven" && player2Wins !== 4)) {
                 next.addEventListener("click", () => {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/7</span>`;
                     outcome.innerHTML = "";
@@ -719,6 +887,7 @@ if (location.pathname.includes("gamepage")) {
                 gameTitle.classList.add("d-none");
                 options.classList.add("d-none");
                 rules.classList.add("d-none");
+                imgsize.classList.add("img-block");
                 winCount.classList.add("d-none");
                 outcome.innerHTML = `Player One Chose ${player1Choice}. Player Two chose Spock. <br> <span class=${color}>${winner}</span>`;
                 imgResult.src = image;
@@ -730,6 +899,26 @@ if (location.pathname.includes("gamepage")) {
                 sessionStorage.setItem("Player1WinBoolean", player1Wins == 1 ? true : false );
                 next.addEventListener("click", () => {
                     location.replace("./endingpage.html");
+                });
+            }else if(localStorage.getItem("gameMode") == "one" && player1Wins !== 1 || (localStorage.getItem("gameMode") == "one" && player2Wins !== 1)){
+                next.addEventListener("click", () => {
+                    gameTitle.classList.remove("d-none");
+                    options.classList.remove("d-none");
+                    rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
+                    mode = 5;
+                    winCount.classList.remove("d-none");
+                    winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
+                    outcome.innerHTML = "";
+                    imgResult.src = "";
+                    next.classList.add("d-none");
+                    player1Turn = true;
+                    gameTitle.innerHTML ='PLAYER <span id="text-color" class="red">ONE</span> CHOOSES:';
+                    rockBlue.classList.remove("blueLine");
+                    paperBlue.classList.remove("blueLine");
+                    scissorsBlue.classList.remove("blueLine");
+                    lizardBlue.classList.remove("blueLine");
+                    spockBlue.classList.remove("blueLine");
                 });
             }
 
@@ -743,6 +932,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 5;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;
@@ -769,6 +959,7 @@ if (location.pathname.includes("gamepage")) {
                     gameTitle.classList.remove("d-none");
                     options.classList.remove("d-none");
                     rules.classList.remove("d-none");
+                    imgsize.classList.remove("img-block");
                     mode = 7;
                     winCount.classList.remove("d-none");
                     winCount.innerHTML = `P1 WINS: <span class="green"> ${player1Wins}/${mode}</span>`;

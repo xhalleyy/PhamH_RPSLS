@@ -2,7 +2,7 @@ import { gameLogic, player1Wins, player2Wins, winner, color, image } from "./log
 
 const rpsAPI = async () => {
     const promise = await fetch(
-        "https://scottsrpsls.azurewebsites.net/api/RockPaperScissors/GetRandomOption"
+        "https://jessierpslsapi.azurewebsites.net/api/RPSLS/randomCpuChoice"
     );
     return await promise.text();
 };
